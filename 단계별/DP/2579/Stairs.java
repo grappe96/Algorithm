@@ -31,8 +31,8 @@ public class Stairs {
             stairs[i] = sc.nextInt();
         sc.close();
         if (N < 3)
-            for (int i=1; i<N; i++)
-                max[i] += stairs[i];
+            for (int i=1; i<=N; i++)
+                max[i] += max[i-1] + stairs[i];
         else {
             max[1] = stairs[1];
             max[2] = stairs[1] + stairs[2];
