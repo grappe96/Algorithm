@@ -21,13 +21,13 @@ public class Tile {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
-        long[] tile = new long[T+1];
-        tile[0] = 0;
-        tile[1] = 1;
-        tile[2] = 2;
-        for(int i=3; i<=T; i++)
-            tile[i] = (tile[i-1] + tile[i-2]);
-        System.out.println(tile[T] % 15746);
         sc.close();
+        int[] tile = new int[T+1];
+        for(int i=1;i<=T&&i<=2;i++)
+            tile[i] = i;
+        if(T >= 3)
+            for(int i=3;i<=T;i++)
+                tile[i] = (tile[i-1]+tile[i-2])%15746;
+        System.out.println(tile[T]);
     }
 }
