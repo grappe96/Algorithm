@@ -18,31 +18,29 @@ n개의 정수로 이루어진 임의의 수열이 주어진다.
 */
 
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class ContSum{
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
+
+        System.setIn(new FileInputStream("test.txt"));
+
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int[] num = new int[N+1];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int[] num = new int[N];
-        int[] DP = new int[N];
-        int sum;
-
-        st = new StringTokenizer(br.readLine());
-        for(int i=0; i<N; i++)
+        for(int i=1; i<=N; i++)
             num[i] = Integer.parseInt(st.nextToken());
-        DP[0] = num[0];
-        for(int i=1; i<N; i++){
-            sum = 0;
-            DP[i] = DP[i-1];
-            for(int j=i; j>=0; j--){
-                sum += num[j];
-                DP[i] = Math.max(DP[i], sum);
-            }
+
+        int[] DP = new int[N+1];
+        int max = DP[1] = num[1];
+        for(int i=2; i<=N; i++){
+            DP[i] = Math.max(DP[i-1]+num[i], num[i]);
+            if(DP[i] > max)
+                max = DP[i];
         }
-        bw.write(DP[N-1] + "\n");
+        bw.write(max + "\n");
         bw.close();
     }
 }
