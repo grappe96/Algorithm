@@ -21,65 +21,50 @@ N개의 수가 주어졌을 때, 네 가지 기본 통계값을 구하는 프로
 셋째 줄에는 최빈값을 출력한다. 여러 개 있을 때에는 최빈값 중 두 번째로 작은 값을 출력한다.
 넷째 줄에는 범위를 출력한다.
 */
-
-import java.util.Scanner;
+import java.io.*;
 
 public class Statistics {
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+
+        System.setIn(new FileInputStream("test.txt"));
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int N = Integer.parseInt(br.readLine());
         int[] num = new int[8001];
-        int[] second = new int[2];
-        int tmp, mode=0, median=0, median_chk=0, range=0, min=-1, max=0;
         double average = 0.0;
         for(int i=0;i<N;i++){
-            tmp = sc.nextInt();
-            num[tmp+4000]++;
+            int n = Integer.parseInt(br.readLine());
+            num[n+4000]++;
+            average += n;
         }
+        average /= (double)N;
+        int midcnt=0, ismod=0, middle=0, min=8001, max=0;
+        int[] mode = new int[2];
         for(int i=0;i<=8000;i++){
-            if (num[i] != 0){
-                max = i;
-                if (min == -1)
-                    min = i;
-
-                average += (i-4000)*num[i];
-
-                if (num[i] > num[mode]){
-                    second[0] = mode = i;
-                    second[1] = -1;
+            if(num[i] > 0){
+                if(midcnt < N/2+1){
+                    midcnt += num[i];
+                    if(midcnt >= N/2+1)
+                        middle = i-4000;
                 }
-                else if (num[i] == num[mode]){
-                    if (second[1] == -1){
-                        second[1] = second[0];
-                        second[0] = mode = i;
-                    }
+                if(num[i] > ismod){
+                    ismod = num[i];
+                    mode[0] = i-4000;
+                    mode[1] = 8001;
+                }else if(num[i] == ismod && mode[1] == 8001){
+                    mode[1] = mode[0];
+                    mode[0] = i-4000;
                 }
-
-                if (median_chk < (N/2+1))
-                    median_chk += num[i];
-                if (median_chk >= (N/2+1) && median == 0){
-                    median = i-4000;
-                    if (N%2 == 0) {
-                        if(num[i] == 1){
-                            for (int j = i-1;j>0;j--){
-                                if (num[j] != 0){
-                                    median += j-4000;
-                                    break;
-                                }
-                            }
-                            median /= 2;
-                        }
-                    }
-                }
+                if(min == 8001)
+                    min = i-4000;
+                max = i-4000;
             }
         }
-        range = max - min;
-        mode -= 4000;
-        average /= (double)N;
-        System.out.println(Math.round(average));
-        System.out.println(median);
-        System.out.println(mode);
-        System.out.println(range);
-        sc.close();
+        bw.write(Math.round(average) + "\n");
+        bw.write(middle + "\n");
+        bw.write(mode[0] + "\n");
+        bw.write(max-min + "\n");
+        bw.close();
     }
 }
