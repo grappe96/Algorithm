@@ -2,7 +2,7 @@ package Programmers;
 
 /*
 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
-코딩테스트 연습> 스택/큐 > 기능개발
+코딩테스트 연습> 스택/큐 > 쇠막대기
 
 문제 설명
 
