@@ -2,7 +2,7 @@ package Programmers;
 
 /*
 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
-코딩테스트 연습> 스택/큐 > 라면공장
+코딩테스트 연습> 힙> 라면공장
 
 문제 설명
 
