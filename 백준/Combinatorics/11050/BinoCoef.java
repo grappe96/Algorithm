@@ -19,7 +19,7 @@ public class BinoCoef {
     public static int[][] dp = new int[11][11];
     public static void main(String[] args) throws IOException {
 
-        System.setIn(new FileInputStream("test.txt"));
+        System.setIn(new FileInputStream("Test/test.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));

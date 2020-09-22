@@ -26,7 +26,7 @@ public class NumberingComplex {
     public static int house;
     public static void main(String[] args) throws IOException {
         
-        System.setIn(new FileInputStream("test.txt"));
+        System.setIn(new FileInputStream("Test/test.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));

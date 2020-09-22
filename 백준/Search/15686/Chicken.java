@@ -45,14 +45,14 @@ public class Chicken {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        Tuple[] home = new Tuple[100];
-        Tuple[] store = new Tuple[13];
+        Tuple3[] home = new Tuple3[100];
+        Tuple3[] store = new Tuple3[13];
         int h=0, s=0;
 
         for(int i=1; i<=N; i++){
             st = new StringTokenizer(br.readLine());
             for(int j=1; j<=N; j++){
-                Tuple t = new Tuple();
+                Tuple3 t = new Tuple3();
                 String tmp = st.nextToken();
                 if(tmp.equals("1")){
                     t.r = i;
@@ -69,7 +69,7 @@ public class Chicken {
         bw.write(min + "\n");
         bw.close();
     }
-    public static void choice(int m, int idx, int s, int h, Tuple[] S, Tuple[] H){
+    public static void choice(int m, int idx, int s, int h, Tuple3[] S, Tuple3[] H){
         if(com.size() == m){
             int tot=0;
             for(int i=0; i<h; i++){

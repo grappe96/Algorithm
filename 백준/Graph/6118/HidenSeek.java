@@ -29,7 +29,7 @@ import java.util.*;
 public class HidenSeek {
     public static void main(String[] args) throws IOException {
         
-        System.setIn(new FileInputStream("test.txt"));
+        System.setIn(new FileInputStream("Test/test.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());

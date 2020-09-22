@@ -23,7 +23,7 @@ public class TreeCircuit {
     public static HashMap<String, String> tree = new HashMap<String, String>();
     public static void main(String[] args) throws IOException {
 
-        System.setIn(new FileInputStream("test.txt"));
+        System.setIn(new FileInputStream("Test/test.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());

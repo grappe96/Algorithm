@@ -16,12 +16,12 @@ LCS가 여러 가지인 경우에는 아무거나 출력하고, LCS의 길이가
 */
 
 import java.io.*;
-import java.util.*;
+import java.util.Stack;
 
 public class LCS2 {
     public static void main(String[] args) throws IOException {
         
-        System.setIn(new FileInputStream("test.txt"));
+        System.setIn(new FileInputStream("Test/test.txt"));
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
