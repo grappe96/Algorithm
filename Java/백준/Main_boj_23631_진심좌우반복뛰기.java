@@ -13,24 +13,27 @@ public class Main_boj_23631_Áø½ÉÁÂ¿ì¹İº¹¶Ù±â {
 			int N = Integer.parseInt(st.nextToken());
 			int K = Integer.parseInt(st.nextToken());
 			
-			int sum = 0, num = 0, isOdd = 0, count = 0;
-			while(true) {
-				count++;
-				isOdd = isOdd == 1 ? 0 : 1;
-				if(sum + count*K > N-1) {
-					num = isOdd == 1 ? num + (N-1 - sum) : num - (N-1 - sum);
-					break;
-				}
-				sum += count*K;
-				num = isOdd == 1 ? num + count*K : num - count*K;
+			long count = binarySearch(0, 5000, N, K);
+			long diff = N-1 - (count+1)*count*K/2;
+			
+			if(count%2 == 0) {
+				long num = -1 * K * (count/2) - diff;
+				sb.append(num).append(" ").append("L\n");
+			} else {
+				long num = K * (count/2+1) + diff;
+				sb.append(num).append(" ").append("R\n");
 			}
-			sb.append(num).append(" ");
-			if(isOdd == 1)
-				sb.append("R");
-			else
-				sb.append("L");
-			sb.append("\n");
 		}
 		System.out.print(sb.toString());
+	}
+	private static long binarySearch(long start, long end, int n, int k) {
+		if(start >= end)
+			return start;
+		long middle = (start+end)/2;
+		
+		if((middle+1)*middle*k/2 >= n)
+			return binarySearch(start, middle, n, k);
+		else
+			return binarySearch(middle+1, end, n, k);
 	}
 }
