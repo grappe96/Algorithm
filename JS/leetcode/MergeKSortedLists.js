@@ -1,20 +1,30 @@
 var mergeKLists = function (lists) {
-  const answer = new ListNode(-1, null);
+  const binarySearch = function (l, r) {
+    if (l >= r) return lists[l];
 
-  for (let list of lists) {
-    let listNode = list,
-      node = answer,
-      nextNode = answer.next;
-    while (listNode !== null) {
-      while (nextNode !== null && nextNode.val < listNode.val) {
-        node = nextNode;
-        nextNode = nextNode.next;
-      }
+    let mid = Math.floor((l + r) / 2);
 
-      node = node.next = new ListNode(listNode.val, nextNode);
-      nextNode = node.next;
-      listNode = listNode.next;
+    let l1 = binarySearch(l, mid);
+    let l2 = binarySearch(mid + 1, r);
+
+    return mergeLists(l1, l2);
+  };
+
+  const mergeLists = function (l1, l2) {
+    if (l1 === null) return l2;
+    if (l2 === null) return l1;
+
+    if (l1.val < l2.val) {
+      l1.next = mergeLists(l1.next, l2);
+      return l1;
+    } else {
+      l2.next = mergeLists(l1, l2.next);
+      return l2;
     }
-  }
-  return answer.next;
+  };
+
+  const k = lists.length;
+
+  if (k === 0) return null;
+  return binarySearch(0, k - 1);
 };
