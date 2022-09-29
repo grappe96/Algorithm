@@ -1,5 +1,3 @@
-package Java.BoJ;
-
 import java.io.*;
 import java.util.StringTokenizer;
 
